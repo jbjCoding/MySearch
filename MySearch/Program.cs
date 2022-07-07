@@ -1,7 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using MySearch.DAL;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<MySearchContext>(options => options.UseSqlServer("Server=DESKTOP-DG22EM8\\SQLEXPRESS;Database=MySearch;Trusted_Connection=True;Integrated Security=True;"));
 
 var app = builder.Build();
 

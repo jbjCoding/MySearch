@@ -7,5 +7,7 @@ namespace MySearch.DAL
         public MySearchContext(DbContextOptions options) : base(options)
         {
         }
+
+        public DbSet<SearchResult> SearchResults { get; set; }
     }
 }
