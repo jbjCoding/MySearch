@@ -8,16 +8,23 @@
             Input your search query
         </div>
         <div class="col-6">
-            <input id="search-input" type="text" class="form-control" placeholder="query"/>
+            <input id="search-input" type="text" class="form-control" placeholder="query" />
         </div>
         <div class="col-2">
             <button id="search-button" class="btn btn-primary">Search</button>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
+    <div class="row mt-5">
+        <div class="col-12" id="displayable" style="display: none;">
             <table id="search-table">
-
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Link</th>
+                        <th>Snippet</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
             </table>
         </div>
     </div>
