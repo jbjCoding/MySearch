@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MySearch.DAL;
+using MySearch.API.DAL;
 
 #nullable disable
 
-namespace MySearch.Migrations
+namespace MySearch.API.Migrations
 {
     [DbContext(typeof(MySearchContext))]
-    [Migration("20220707121021_Initial")]
+    [Migration("20220708161849_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,7 +23,7 @@ namespace MySearch.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("MySearch.DAL.SearchResult", b =>
+            modelBuilder.Entity("MySearch.API.DAL.SearchResult", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

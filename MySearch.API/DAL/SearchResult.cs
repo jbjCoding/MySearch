@@ -1,4 +1,4 @@
-﻿namespace MySearch.DAL
+﻿namespace MySearch.API.DAL
 {
     public class SearchResult
     {

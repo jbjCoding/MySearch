@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace MySearch.DAL
+namespace MySearch.API.DAL
 {
     public class MySearchContext : DbContext
     {

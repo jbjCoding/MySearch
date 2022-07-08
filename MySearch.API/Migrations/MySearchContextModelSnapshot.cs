@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MySearch.DAL;
+using MySearch.API.DAL;
 
 #nullable disable
 
-namespace MySearch.Migrations
+namespace MySearch.API.Migrations
 {
     [DbContext(typeof(MySearchContext))]
     partial class MySearchContextModelSnapshot : ModelSnapshot
@@ -21,7 +21,7 @@ namespace MySearch.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("MySearch.DAL.SearchResult", b =>
+            modelBuilder.Entity("MySearch.API.DAL.SearchResult", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

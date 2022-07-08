@@ -1,3 +1,5 @@
 .vs
 /MySearch/bin
 /MySearch/obj
+/MySearch.API/bin
+/MySearch.API/obj

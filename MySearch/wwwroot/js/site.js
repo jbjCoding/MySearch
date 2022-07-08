@@ -8,6 +8,8 @@ const cx = '30ea3021d27d247fe';
 
 const table = $('#search-table');
 
+const saveToDbUrl = 'https://localhost:7230/MySearchApi/SaveQuery ';
+
 $(document).ready(function () {
     table.DataTable({
         ordering: true,
@@ -22,7 +24,6 @@ $(document).ready(function () {
 
 $('#search-button').on('click', function () {
     let searchVal = $('#search-input').val();
-    debugger;
 
     if (!inputValid(searchVal)) {
         alert('search query can\'t be empty');
@@ -74,8 +75,8 @@ const search = async function () {
                 { 'data': 'snippet' }
             ]
         });
-        
-        //save to db
+
+        axios.post(saveToDbUrl, mappedItems.map(mi => createMappedItemForBack(mi)));
     });
 }
 
@@ -105,5 +106,10 @@ const createMappedItem = function (item) {
     mappedItem.link = item.link;
     mappedItem.snippet = item.snippet;
 
+    return mappedItem;
+}
+
+const createMappedItemForBack = function (item) {
+    const mappedItem = { id: 0, ...item };
     return mappedItem;
 }

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace MySearch.Migrations
+namespace MySearch.API.Migrations
 {
     public partial class Initial : Migration
     {
