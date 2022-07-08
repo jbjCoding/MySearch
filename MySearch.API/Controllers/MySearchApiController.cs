@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MySearch.API.DAL;
+using MySearch.API.Utilities;
 
 namespace MySearch.API.Controllers
 {
@@ -24,6 +25,23 @@ namespace MySearch.API.Controllers
             {
                 _context.SearchResults.AddRange(results);
                 _context.SaveChanges();
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public IActionResult ExportToExcel()
+        {
+            try
+            {
+                var lastQueryItems = _context.SearchResults.OrderByDescending(sr => sr.Id).Take(100).ToList();
+                Utils.ExportSearchItemsToExcel(lastQueryItems);
 
                 return Ok();
             }

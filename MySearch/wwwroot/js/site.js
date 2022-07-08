@@ -9,6 +9,7 @@ const cx = '30ea3021d27d247fe';
 const table = $('#search-table');
 
 const saveToDbUrl = 'https://localhost:7230/MySearchApi/SaveQuery ';
+const exportUrl = 'https://localhost:7230/MySearchApi/ExportToExcel ';
 
 $(document).ready(function () {
     table.DataTable({
@@ -40,27 +41,31 @@ $('#search-button').on('click', function () {
     search();
 });
 
+$('#export-button').on('click', function () {
+
+});
+
 const search = async function () {
     //let index = 0;
 
     const result = await Promise.all([
         axios.get(urls[0]),
-        axios.get(urls[1])
-        //axios.get(urls[2]),
-        //axios.get(urls[3]),
-        //axios.get(urls[4]),
-        //axios.get(urls[5]),
-        //axios.get(urls[6]),
-        //axios.get(urls[7]),
-        //axios.get(urls[8]),
-        //axios.get(urls[9])
+        axios.get(urls[1]),
+        axios.get(urls[2]),
+        axios.get(urls[3]),
+        axios.get(urls[4]),
+        axios.get(urls[5]),
+        axios.get(urls[6]),
+        axios.get(urls[7]),
+        axios.get(urls[8]),
+        axios.get(urls[9])
     ]).then(data => {
         urls = [];
 
         const items = getItemsFromData(data);
         const mappedItems = items.map(i => createMappedItem(i));
 
-        $('#displayable').css('display', 'block');
+        $('.displayable').css('display', 'block');
 
         table.DataTable().destroy();
         table.empty();
