@@ -42,11 +42,10 @@ $('#search-button').on('click', function () {
 });
 
 $('#export-button').on('click', function () {
-
+    axios.post(exportUrl).then(alert('export.xlsx exported successfully'));
 });
 
 const search = async function () {
-    //let index = 0;
 
     const result = await Promise.all([
         axios.get(urls[0]),

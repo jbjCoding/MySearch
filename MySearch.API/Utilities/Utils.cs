@@ -9,6 +9,7 @@ namespace MySearch.API.Utilities
 
         internal static void ExportSearchItemsToExcel(List<SearchResult> lastQueryItems)
         {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             ExcelPackage excel = new ExcelPackage();
 
             var worksheet = excel.Workbook.Worksheets.Add("SearchResults");
@@ -23,13 +24,12 @@ namespace MySearch.API.Utilities
         private static void CreateFileOnDisk(ExcelPackage excel)
         {
             string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string file = System.IO.Path.Combine(currentDirectory, FILE_PATH);
+            string file = Path.Combine(currentDirectory, FILE_PATH);
             string filePath = Path.GetFullPath(file);
 
             if (File.Exists(filePath))
                 File.Delete(filePath);
 
-            // Create excel file on physical disk 
             FileStream fileStream = File.Create(filePath);
             fileStream.Close();
 
