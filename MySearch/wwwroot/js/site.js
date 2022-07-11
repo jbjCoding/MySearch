@@ -9,6 +9,7 @@ const cx = '30ea3021d27d247fe';
 const table = $('#search-table');
 
 const saveToDbUrl = 'https://localhost:7230/MySearchApi/SaveQuery ';
+const readFromDbUrl = 'https://localhost:7230/MySearchApi/GetLastQuery ';
 const exportUrl = 'https://localhost:7230/MySearchApi/ExportToExcel ';
 
 $(document).ready(function () {
@@ -64,23 +65,26 @@ const search = async function () {
         const items = getItemsFromData(data);
         const mappedItems = items.map(i => createMappedItem(i));
 
-        $('.displayable').css('display', 'block');
+        axios.post(saveToDbUrl, mappedItems.map(mi => createMappedItemForBack(mi))).then((data) => {
+            axios.get(readFromDbUrl).then((data) => {
 
-        table.DataTable().destroy();
-        table.empty();
+                $('.displayable').css('display', 'block');
 
-        table.DataTable({
-            data: mappedItems,
-            ordering: true,
-            searching: true,
-            columns: [
-                { 'data': 'title' },
-                { 'data': 'link' },
-                { 'data': 'snippet' }
-            ]
+                table.DataTable().destroy();
+                table.empty();
+
+                table.DataTable({
+                    data: data.data,
+                    ordering: true,
+                    searching: true,
+                    columns: [
+                        { 'data': 'title' },
+                        { 'data': 'link' },
+                        { 'data': 'snippet' }
+                    ]
+                });
+            });
         });
-
-        axios.post(saveToDbUrl, mappedItems.map(mi => createMappedItemForBack(mi)));
     });
 }
 

@@ -34,6 +34,23 @@ namespace MySearch.API.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("[action]")]
+        public IActionResult GetLastQuery()
+        {
+            try
+            {
+                var lastQueryItems = _context.SearchResults.OrderByDescending(sr => sr.Id).Take(20).ToList();
+                lastQueryItems.Sort((x, y) => x.Id.CompareTo(y.Id));
+
+                return Ok(lastQueryItems);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost]
         [Route("[action]")]
         public IActionResult ExportToExcel()
